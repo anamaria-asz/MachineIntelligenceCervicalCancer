@@ -1,0 +1,69 @@
+[System]
+Name='HygienePracticesRisk'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=1
+NumRules=12
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='UseOfVaginalCleansers'
+Range=[0 1]
+NumMFs=2
+MF1='No':'trapmf',[-0.1 0 0 0.6]
+MF2='Yes':'trapmf',[0.4 1 1 1.1]
+
+[Input2]
+Name='BathFrequency'
+Range=[0 1]
+NumMFs=2
+MF1='Daily':'trapmf',[-0.1 0 0 0.6]
+MF2='LessThanDaily':'trapmf',[0.4 1 1 1.1]
+
+[Input3]
+Name='BathDuringMenstruation'
+Range=[0 1]
+NumMFs=2
+MF1='Yes':'trapmf',[-0.1 0 0 0.6]
+MF2='No':'trapmf',[0.4 1 1 1.1]
+
+[Input4]
+Name='MenstrualMaterialUsed'
+Range=[0 1]
+NumMFs=2
+MF1='SanitaryPad':'trapmf',[-0.1 0 0 0.6]
+MF2='OldCloth':'trapmf',[0.4 1 1 1.1]
+
+[Input5]
+Name='WashAfterIntercourse'
+Range=[0 1]
+NumMFs=2
+MF1='Yes':'trapmf',[-0.1 0 0 0.6]
+MF2='No':'trapmf',[0.4 1 1 1.1]
+
+[Output1]
+Name='HygieneRisk'
+Range=[0 1]
+NumMFs=3
+MF1='Low':'trapmf',[-0.1 0 0.25 0.5]
+MF2='Moderate':'trimf',[0.3 0.5 0.7]
+MF3='High':'trapmf',[0.6 0.75 1 1.1]
+
+[Rules]
+2 2 2 2 2, 3 (1) : 1
+1 1 1 1 1, 1 (1) : 1
+2 1 1 1 1, 2 (1) : 1
+1 2 1 2 2, 3 (1) : 1
+1 1 1 1 2, 2 (1) : 1
+1 1 1 2 1, 2 (1) : 1
+2 2 2 2 2, 3 (1) : 1
+1 1 1 1 1, 1 (1) : 1
+2 1 1 1 1, 2 (1) : 1
+1 2 1 2 2, 3 (1) : 1
+1 1 1 1 2, 2 (1) : 1
+1 1 1 2 1, 2 (1) : 1

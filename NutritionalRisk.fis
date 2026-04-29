@@ -1,0 +1,59 @@
+[System]
+Name='NutritionalRisk'
+Type='mamdani'
+Version=2.0
+NumInputs=4
+NumOutputs=1
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='BalancedDiet'
+Range=[0 1]
+NumMFs=2
+MF1='No':'trapmf',[-0.1 0 0 0.6]
+MF2='Yes':'trapmf',[0.4 1 1 1.1]
+
+[Input2]
+Name='VitaminCIntake'
+Range=[0 200]
+NumMFs=3
+MF1='Low':'trapmf',[-10 0 35 50]
+MF2='Medium':'trimf',[35 100 165]
+MF3='High':'trapmf',[135 165 200 210]
+
+[Input3]
+Name='VitaminEIntake'
+Range=[0 30]
+NumMFs=3
+MF1='Low':'trapmf',[-1 0 5 7]
+MF2='Medium':'trimf',[5 11 17]
+MF3='High':'trapmf',[13 17 30 32]
+
+[Input4]
+Name='AntioxidantIntake'
+Range=[0 100]
+NumMFs=3
+MF1='Low':'trapmf',[-10 0 21 30]
+MF2='Medium':'trimf',[21 50 79]
+MF3='High':'trapmf',[70 85 100 110]
+
+[Output1]
+Name='NutritionalRisk'
+Range=[0 1]
+NumMFs=3
+MF1='High':'trapmf',[-0.1 0 0.25 0.5]
+MF2='Moderate':'trimf',[0.35 0.55 0.75]
+MF3='Low':'trapmf',[0.65 0.85 1 1.1]
+
+[Rules]
+1 1 1 1, 1 (1) : 1
+1 2 2 2, 2 (1) : 1
+1 3 3 3, 3 (1) : 1
+2 1 1 1, 2 (1) : 1
+2 2 2 2, 3 (1) : 1
+2 3 3 3, 3 (1) : 1

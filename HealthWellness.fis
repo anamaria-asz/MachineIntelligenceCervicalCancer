@@ -1,0 +1,57 @@
+[System]
+Name='HealthWellness'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=11
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='PhysicalActivity'
+Range=[0 10]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 1.15995762711864 9.44385593220339]
+MF2='High':'trapmf',[0.598516949152542 8.94597457627118 10 10]
+MF3='Average':'trimf',[1.98622881355932 5.09009932567888 7.26165254237288]
+
+[Input2]
+Name='SleepQuality'
+Range=[0 10]
+NumMFs=3
+MF1='Poor':'trapmf',[0 0 1.60487288135593 10.0264830508475]
+MF2='Good':'trapmf',[0.17478813559322 8.88241525423729 10 10]
+MF3='Sufficient':'trimf',[4.23199152542373 5.51075268817204 6.94444444444444]
+
+[Input3]
+Name='Nutrition'
+Range=[0 10]
+NumMFs=3
+MF1='Poor':'trapmf',[0 0 2.20868644067797 9.99470338983051]
+MF2='Good':'trapmf',[-0.0158898305084746 9.0625 10 10]
+MF3='Adequate':'trimf',[4.45340501792115 5.54659498207885 7.26702508960573]
+
+[Output1]
+Name='HealthStress'
+Range=[0 10]
+NumMFs=3
+MF1='Low':'trapmf',[0 0 0.598516949152542 4.38029661016949]
+MF2='High':'trapmf',[5.95868644067797 9.72987288135593 10 10]
+MF3='Medium':'trimf',[3.48566308243728 5.47491039426523 7.26702508960573]
+
+[Rules]
+1 1 -2, 2 (1) : 1
+2 2 2, 1 (1) : 1
+3 3 3, 3 (1) : 1
+3 2 2, 1 (1) : 1
+2 3 2, 1 (1) : 1
+2 2 3, 1 (1) : 1
+3 3 2, 3 (1) : 1
+2 3 3, 3 (1) : 1
+3 2 3, 3 (1) : 1
+1 -2 1, 2 (1) : 1
+-2 1 1, 2 (1) : 1
